@@ -1,9 +1,9 @@
 public class Node {
-    int data;
+    Carta data;
     Node next; //No posterior
     Node prev; //No anterior
 
-    public Node(int data) {
+    public Node(Carta data) {
         this.data = data;
         this.next = null;
         this.prev = null;

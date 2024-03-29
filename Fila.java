@@ -10,7 +10,7 @@ public class Fila {
         this.tail = null;
     }
 
-    public void add(int data) {
+    public void add(Carta data) {
 
         Node newNode = new Node(data);
         if (!isEmpty()) {
@@ -36,77 +36,25 @@ public class Fila {
         }
     }
 
-    public int remover() {
+    public String remover() {
         Node temp = tail;
         if (isEmpty()) {
-            return -1;
+            return "-1";
         }
         if (head == tail) {
             head = tail = null;
             tamanho--;
-            return temp.data;
+            return temp.data.toString();
         }
         tail = tail.prev;
         tail.next = null;
         temp.prev = null;
         tamanho--;
-        return temp.data;
+        return temp.data.toString();
     }
 
     public int size() {
         return tamanho;
     }
-
-    public int somar(Fila fila1) {
-        int soma = 0;
-        Node temp = fila1.head;
-        while (temp != null) {
-            soma += temp.data;
-            temp = temp.next;
-        }
-        return soma;
-    }
-
-    public Fila filaMenor(Fila fila1, Fila fila2) {
-
-        int soma1 = somar(fila1);
-        int soma2 = somar(fila2);
-
-        if (soma1 < soma2) {
-            return fila1;
-        }
-
-        return fila2;
-    }
-
-//    public void ordenarPorAnoDePublicacao() {
-//        if (head == null || head == tail) {
-//            return;
-//        }
-//
-//        boolean trocado;
-//        do {
-//            trocado = false;
-//            Pilha.Node current = head;
-//            while (current.next != null) {
-//                if (current.data.getAnoPublicacao() > current.next.data.getAnoPublicacao()) {
-//                    Livro temp = current.data;
-//                    current.data = current.next.data;
-//                    current.next.data = temp;
-//                    trocado = true;
-//                }
-//                current = current.next;
-//            }
-//        } while (trocado);
-//    }
-//
-//    public void imprimirTitulosOrdenados() {
-//        Pilha.Node current = head;
-//        while (current != null) {
-//            System.out.println(current.data.toString());
-//            current = current.next;
-//        }
-//        System.out.println();
-//    }
 }
 

@@ -13,7 +13,7 @@ public class Pilha {
         this.tamanho = tamanho;
     }
 
-    public void push(int data) {
+    public void push(Carta data) {
 
         if(isFull()) {
             return;
