@@ -53,6 +53,22 @@ public class Pilha {
         return head == null;
     }
 
+    @Override
+    public String toString() {
+        return "Pilha [head=" + head + ", tamanho=" + tamanho + ", quantidade=" + quantidade + "]";
+    }
 
+    public void imprimirPilha() {
+        Node current = head;
+
+        while (current != null) {
+            System.out.println(current.data.toString());
+
+            current = current.next;
+        }
+    }
+
+
+    
     
 }
