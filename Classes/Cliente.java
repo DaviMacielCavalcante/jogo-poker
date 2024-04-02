@@ -1,10 +1,17 @@
+package Classes;
+import Filas.FilaCartas;
+
 public class Cliente {
 
     private int id;
-    private Fila mao;
+    private FilaCartas mao;
     private boolean jogar;
 
     private boolean continuar;
+
+    public Cliente(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -14,11 +21,11 @@ public class Cliente {
         this.id = id;
     }
 
-    public Fila getMao() {
+    public FilaCartas getMao() {
         return mao;
     }
 
-    public void setMao(Fila mao) {
+    public void setMao(FilaCartas mao) {
         this.mao = mao;
     }
 
@@ -38,10 +45,7 @@ public class Cliente {
         this.continuar = continuar;
     }
 
-    public Cliente() {
-    }
-
-    public void receberMao(Fila mao) {
+    public void receberMao(FilaCartas mao) {
         this.mao = mao;
     }
 

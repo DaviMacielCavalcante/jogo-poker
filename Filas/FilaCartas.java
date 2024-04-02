@@ -1,21 +1,25 @@
-public class Fila {
+package Filas;
+import Classes.Carta;
+import Nodes.NodeCarta;
 
-    Node head;
-    Node tail;
+public class FilaCartas {
 
-    int tamanho = 0;
+    public NodeCarta head;
+    public NodeCarta tail;
 
-    public Fila() {
+    public int tamanho = 0;
+
+    public  FilaCartas() {
         this.head = null;
         this.tail = null;
     }
 
     public void add(Carta data) {
 
-        Node newNode = new Node(data);
+        NodeCarta newNode = new NodeCarta(data);
         if (!isEmpty()) {
-            newNode.next = head;
-            head.prev = newNode;
+            newNode.setNext(head);
+            head.setPrev(newNode);
             head = newNode;
             tamanho++;
         } else {
@@ -29,28 +33,28 @@ public class Fila {
     }
 
     public void imprimirFila() {
-        Node temp = head;
+        NodeCarta temp = head;
         while (temp != null) {
-            System.out.println(temp.data);
-            temp = temp.next;
+            System.out.println(temp.getData());
+            temp = temp.getNext();
         }
     }
 
     public String remover() {
-        Node temp = tail;
+        NodeCarta temp = tail;
         if (isEmpty()) {
             return "-1";
         }
         if (head == tail) {
             head = tail = null;
             tamanho--;
-            return temp.data.toString();
+            return temp.getData().toString();
         }
-        tail = tail.prev;
-        tail.next = null;
-        temp.prev = null;
+        tail = tail.getPrev();
+        tail.setNext(null);
+        temp.setPrev(null);
         tamanho--;
-        return temp.data.toString();
+        return temp.getData().toString();
     }
 
     public int size() {

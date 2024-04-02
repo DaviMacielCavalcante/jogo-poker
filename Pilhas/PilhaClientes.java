@@ -1,36 +1,40 @@
-public class Pilha {
+package Pilhas;
+import Classes.Cliente;
+import Nodes.NodeCliente;
 
-    Node head;
-    int tamanho, quantidade = 0;
+public class PilhaClientes {
 
-    public Pilha() {
+    public NodeCliente head;
+    public int tamanho, quantidade = 0;
+
+    public PilhaClientes() {
         this.head = null;
         this. tamanho = 10;
     }
 
-    public Pilha(int tamanho) {
+    public PilhaClientes(int tamanho) {
         this.head = null;
         this.tamanho = tamanho;
     }
 
-    public void push(Carta data) {
+    public void push(Cliente data) {
 
         if(isFull()) {
             return;
         };
 
-        Node newNode = new Node(data);
-        newNode.next = head;
+        NodeCliente newNode = new NodeCliente(data);
+        newNode.setNext(head);
         head = newNode;
         this.quantidade += 1;
     }
 
    public void pop() {
         if (!isEmpty()) {
-            Node temp = null;
+            NodeCliente temp = null;
             temp = head;
-            head = head.next;
-            System.out.println(temp.data);
+            head = head.getNext();
+            System.out.println(temp.getData());
             this.quantidade -= 1;
         } else {
             System.out.println("Pilha vazia");
@@ -41,7 +45,7 @@ public class Pilha {
         if (head == null) {
             System.out.println("Pilha vazia!");
         } else {
-            System.out.println(head.data);
+            System.out.println(head.getData());
         }
     }
 
@@ -59,12 +63,12 @@ public class Pilha {
     }
 
     public void imprimirPilha() {
-        Node current = head;
+        NodeCliente current = head;
 
         while (current != null) {
-            System.out.println(current.data.toString());
+            System.out.println(current.getData().toString());
 
-            current = current.next;
+            current = current.getNext();
         }
     }    
 }
