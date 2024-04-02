@@ -45,7 +45,7 @@ public class Cliente {
         this.mao = mao;
     }
 
-    public void receberCarta(Carta carta) {
+    public void escolherCarta(Carta carta) {
         mao.add(carta);
     }
 
@@ -58,7 +58,7 @@ public class Cliente {
         }
     }
 
-    public int apostar(int valor) {
+    public int apostarOuPagar(int valor) {
         return valor;
     }
 
