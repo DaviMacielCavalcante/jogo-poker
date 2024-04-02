@@ -31,25 +31,33 @@ public class Cliente {
     public Cliente() {
     }
 
-    private void receberMao(Carta carta) {
+    public void receberMao(Carta carta) {
         mao.add(carta);
     }
 
-    private void pedirCarta() {
+    public void pedirCarta() {
 
     }
 
-    private void jogarCarta() {
+    public void jogarCarta() {
 
     }
 
-    private void continuarOuNao(String resp) {
+    public void passar(String resp) {
         resp = resp.toLowerCase();
         if (resp.equals("s")) {
             continuar = true;
         } else if (resp.equals("n")) {
             continuar = false;
         }
+    }
+
+    public void apostar() {
+
+    }
+
+    public void sair() {
+
     }
 
     @Override

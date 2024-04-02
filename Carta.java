@@ -2,15 +2,13 @@ public class Carta {
 
     private String naipe;
     private int valor;
-    private String face;
 
     public Carta() {
     }
 
-    public Carta(String naipe, int valor, String face) {
+    public Carta(String naipe, int valor) {
         this.naipe = naipe;
         this.valor = valor;
-        this.face = face;
     }
 
     public String getNaipe() {
@@ -29,20 +27,11 @@ public class Carta {
         this.valor = valor;
     }
 
-    public String getFace() {
-        return face;
-    }
-
-    public void setFace(String face) {
-        this.face = face;
-    }
-
     @Override
     public String toString() {
         return "Carta{" +
                 "naipe='" + naipe + '\'' +
                 ", valor=" + valor +
-                ", face='" + face + '\'' +
                 '}';
     }
 }
