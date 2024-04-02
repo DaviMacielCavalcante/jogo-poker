@@ -2,6 +2,8 @@ public class Cliente {
 
     private int id;
     private Fila mao;
+    private boolean jogar;
+
     private boolean continuar;
 
     public int getId() {
@@ -20,6 +22,14 @@ public class Cliente {
         this.mao = mao;
     }
 
+    public boolean isJogar() {
+        return jogar;
+    }
+
+    public void setJogar(boolean jogar) {
+        this.jogar = jogar;
+    }
+
     public boolean isContinuar() {
         return continuar;
     }
@@ -31,33 +41,29 @@ public class Cliente {
     public Cliente() {
     }
 
-    public void receberMao(Carta carta) {
+    public void receberMao(Fila mao) {
+        this.mao = mao;
+    }
+
+    public void receberCarta(Carta carta) {
         mao.add(carta);
-    }
-
-    public void pedirCarta() {
-
-    }
-
-    public void jogarCarta() {
-
     }
 
     public void passar(String resp) {
         resp = resp.toLowerCase();
         if (resp.equals("s")) {
-            continuar = true;
+            jogar = true;
         } else if (resp.equals("n")) {
-            continuar = false;
+            jogar = false;
         }
     }
 
-    public void apostar() {
-
+    public int apostar(int valor) {
+        return valor;
     }
 
     public void sair() {
-
+        setContinuar(false);
     }
 
     @Override
@@ -65,7 +71,6 @@ public class Cliente {
         return "Cliente{" +
                 "id=" + id +
                 ", mao=" + mao +
-                ", continuar=" + continuar +
                 '}';
     }
 }
