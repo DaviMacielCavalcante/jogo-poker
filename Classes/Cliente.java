@@ -6,8 +6,8 @@ public class Cliente {
     private int id;
     private FilaCartas mao;
     private boolean jogar;
-
     private boolean continuar;
+    private int pontuacao;
 
     public Cliente(int id) {
         this.id = id;
@@ -45,12 +45,24 @@ public class Cliente {
         this.continuar = continuar;
     }
 
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
     public void receberMao(FilaCartas mao) {
         this.mao = mao;
     }
 
-    public void escolherCarta(Carta carta) {
+    public void receberCarta(Carta carta) {
         mao.add(carta);
+    }
+
+    public void visualizarMao() {
+        mao.imprimirFila();
     }
 
     public void passar(String resp) {
