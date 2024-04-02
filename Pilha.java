@@ -66,9 +66,5 @@ public class Pilha {
 
             current = current.next;
         }
-    }
-
-
-    
-    
+    }    
 }

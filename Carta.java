@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.Collections;
 public class Carta {
 
     private String naipe;
     private int valor;
 
     Pilha cartas = new Pilha(52);
+
+    ArrayList<Carta> cartasTemporaria = new ArrayList();
 
     public Carta() {
     }
@@ -19,10 +23,21 @@ public class Carta {
 
         for (String n : naipes) {
             for (int v : valores) {
-                cartas.push(new Carta(n, v));
+                cartasTemporaria.add(new Carta(n, v));
             }
         }
-        cartas.imprimirPilha();
+
+        Collections.shuffle(cartasTemporaria);
+        
+        for (Carta carta : cartasTemporaria) {
+            cartas.push(carta);
+        }
+
+        for (Carta carta : cartasTemporaria) {
+            System.out.println(carta);
+        }
+
+        cartasTemporaria.clear();
     }
 
     public String getNaipe() {
