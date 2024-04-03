@@ -4,8 +4,8 @@ import Classes.Cliente;
 import Nodes.*;
 
 public class ListaDuplamenteEncadeada {
-    NodeCliente head; // Referência ao primeiro nó da linha
-    NodeCliente tail; // Referência ao ultimo nó da linha
+    public NodeCliente head; // Referência ao primeiro nó da linha
+    public NodeCliente tail; // Referência ao ultimo nó da linha
 
     public ListaDuplamenteEncadeada() {
         this.head = null;
@@ -98,7 +98,7 @@ public class ListaDuplamenteEncadeada {
     }
     public Cliente acharJogador(int i) {
         NodeCliente temp = head;
-        while (temp != null && ((i + 1)!= temp.getData().getId())) {
+        while (temp != null && ((i)!= temp.getData().getId())) {
             temp = temp.getNext();
         }
         return temp.getData();

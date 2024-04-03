@@ -41,7 +41,7 @@ public class Main {
 
                 for (int j = 0; j < mesa.getOrdemDeJogada2().tamanho(); j++) {
 
-                    System.out.println("Jogador-Id: " + (j+1));
+                    System.out.println("Jogador-Id: " + (j));
                     jogador = mesa.getOrdemDeJogada2().acharJogador(j);
                     jogador.receberCarta(temp1);
 

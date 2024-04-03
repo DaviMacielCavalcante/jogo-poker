@@ -57,7 +57,7 @@ public class Mesa {
         gerarCartas();
         for (int i = 0; i < qtdJogadores; i++) {
 
-            Cliente cliente = new Cliente(i + 1);
+            Cliente cliente = new Cliente(i);
             FilaCartas maoTemp = new FilaCartas();
 
             for (int j = 0; j < 2; j++) {
@@ -91,7 +91,15 @@ public class Mesa {
     }
 
     public void removerJogador(int i) {
-        ordemDeJogada2.deleteByKey(i+1);
+        NodeCliente temp = ordemDeJogada2.head;
+        ListaDuplamenteEncadeada aux = new ListaDuplamenteEncadeada();
+        while (temp != null) {
+            if (((i)!= temp.getData().getId())) {
+                aux.insertAtBegginning(temp.getData());
+            }
+            temp = temp.getNext();
+        }
+        this.ordemDeJogada2 = aux;
     }
 
     public void acrescentarCarta() {
