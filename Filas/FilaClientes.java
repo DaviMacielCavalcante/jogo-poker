@@ -40,14 +40,6 @@ public class FilaClientes {
         }
     }
 
-    public Cliente acharJogador(int i) {
-        NodeCliente temp = head;
-        while (temp != null && ((i + 1)!= temp.getData().getId())) {
-            temp = temp.getNext();
-        }
-        return temp.getData();
-    }
-
     public String remover() {
         NodeCliente temp = tail;
         if (isEmpty()) {

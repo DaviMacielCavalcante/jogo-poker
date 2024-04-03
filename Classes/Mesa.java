@@ -2,6 +2,7 @@ package Classes;
 import java.util.ArrayList;
 import java.util.Collections;
 import Filas.*;
+import ListaDuplamenteEncadeada.*;
 import Nodes.NodeCliente;
 import Pilhas.*;
 
@@ -9,8 +10,9 @@ import Pilhas.*;
 public class Mesa {
 
     private FilaCartas cartasEmJogo = new FilaCartas();
-    private FilaClientes ordemDeJogada = new FilaClientes();
+     private FilaClientes ordemDeJogada = new FilaClientes();
     private PilhaClientes colocacao = new PilhaClientes();
+    private ListaDuplamenteEncadeada ordemDeJogada2 = new ListaDuplamenteEncadeada();
     private int qtdJogadores;
     private int dinheiro;
 
@@ -46,6 +48,10 @@ public class Mesa {
     public String vencedor() {
         return "";
     }
+    
+    public ListaDuplamenteEncadeada getOrdemDeJogada2() {
+        return ordemDeJogada2;
+    }
 
     public void iniciarJogo(int qtdJogadores) {
         gerarCartas();
@@ -61,7 +67,7 @@ public class Mesa {
                 maoTemp.add(cartaTemp);
             }
             cliente.receberMao(maoTemp);
-            ordemDeJogada.add(cliente);
+            ordemDeJogada2.insertAtBegginning(cliente);
         }
     }
 
@@ -81,23 +87,11 @@ public class Mesa {
             cartas.push(carta);
         }
 
-        for (Carta carta : cartasTemporaria) {
-            System.out.println(carta);
-        }
-
         cartasTemporaria.clear();
     }
 
     public void removerJogador(int i) {
-        NodeCliente temp = ordemDeJogada.head;
-        FilaClientes aux = new FilaClientes();
-        while (temp != null) {
-            if (((i + 1)!= temp.getData().getId())) {
-                aux.add(temp.getData());
-            }
-            temp = temp.getNext();
-        }
-        this.ordemDeJogada = aux;
+        ordemDeJogada2.deleteByKey(i+1);
     }
 
     public void acrescentarCarta() {
