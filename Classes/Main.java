@@ -43,7 +43,13 @@ public class Main {
 
                     System.out.println("Jogador-Id: " + (j));
                     jogador = mesa.getOrdemDeJogada2().acharJogador(j);
-                    jogador.receberCarta(temp1);
+
+                    if (jogador != null) {
+                        jogador.receberCarta(temp1);
+                    } else {
+                        continue;
+                    }
+
 
                     System.out.println();
                     System.out.println("Sua mão: ");
