@@ -10,7 +10,7 @@ import Pilhas.*;
 public class Mesa {
 
     private FilaCartas cartasEmJogo = new FilaCartas();
-     private FilaClientes ordemDeJogada = new FilaClientes();
+    private FilaClientes ordemDeJogada = new FilaClientes();
     private PilhaClientes colocacao = new PilhaClientes();
     private ListaDuplamenteEncadeada ordemDeJogada2 = new ListaDuplamenteEncadeada();
     private int qtdJogadores;
@@ -61,13 +61,12 @@ public class Mesa {
             FilaCartas maoTemp = new FilaCartas();
 
             for (int j = 0; j < 2; j++) {
-
                 Carta cartaTemp = cartas.head.getData();
                 cartas.pop();
                 maoTemp.add(cartaTemp);
             }
             cliente.receberMao(maoTemp);
-            ordemDeJogada2.insertAtBegginning(cliente);
+            ordemDeJogada2.insertAtEnd(cliente);
         }
     }
 
@@ -95,7 +94,7 @@ public class Mesa {
         ListaDuplamenteEncadeada aux = new ListaDuplamenteEncadeada();
         while (temp != null) {
             if (((i)!= temp.getData().getId())) {
-                aux.insertAtBegginning(temp.getData());
+                aux.insertAtEnd(temp.getData());
             }
             temp = temp.getNext();
         }

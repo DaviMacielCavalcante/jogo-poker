@@ -9,6 +9,9 @@ public class Cliente {
     private boolean continuar;
     private int pontuacao;
 
+    public Cliente() {
+    }
+
     public Cliente(int id) {
         this.id = id;
     }

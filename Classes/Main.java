@@ -1,5 +1,7 @@
 package Classes;
 
+import Nodes.NodeCliente;
+
 import java.util.Scanner;
 
 public class Main {
@@ -17,43 +19,33 @@ public class Main {
             mesa.iniciarJogo(qtdJogadores);
 
             Cliente jogador;
+            NodeCliente temp = mesa.getOrdemDeJogada2().head;
             Carta temp1 = new Carta();
 
             for (int i = 1; i <= 5; i++) {
-
                 if (i == 1) {
-
                     mesa.acrescentarCarta();
                     temp1 = mesa.getCartasEmJogo().head.getData();
                     mesa.acrescentarCarta();
                     i++;
-
-                    for (int j = 0; j < mesa.getOrdemDeJogada2().tamanho(); j++) {
-
-                        jogador = mesa.getOrdemDeJogada2().acharJogador(j);
-                        jogador.receberCarta(temp1);
-
+                    while (temp!= null){
+                        temp.getData().receberCarta(temp1);
+                        temp = temp.getNext();
                     }
                     continue;
                 }
                 mesa.acrescentarCarta();
                 temp1 = mesa.getCartasEmJogo().head.getData();
+                NodeCliente tmp = mesa.getOrdemDeJogada2().head;
 
-                for (int j = 0; j < mesa.getOrdemDeJogada2().tamanho(); j++) {
+                while (tmp != null){
 
-                    System.out.println("Jogador-Id: " + (j));
-                    jogador = mesa.getOrdemDeJogada2().acharJogador(j);
-
-                    if (jogador != null) {
-                        jogador.receberCarta(temp1);
-                    } else {
-                        continue;
-                    }
+                    System.out.println("Jogador-Id: " + tmp.getData().getId());
 
 
                     System.out.println();
                     System.out.println("Sua mão: ");
-                    jogador.visualizarMao();
+                    tmp.getData().visualizarMao();
                     System.out.println("-------------------");
                     System.out.println("Escolha uma ação: ");
                     System.out.println("[1] - Passar");
@@ -64,17 +56,20 @@ public class Main {
 
                     switch (opcao) {
                         case 1:
+                            tmp = tmp.getNext();
                             break;
                         case 2:
                             System.out.println("Digite o valor: ");
 
                             int valor = sc.nextInt();
 
-                            jogador.apostarOuPagar(valor);
+                            tmp.getData().apostarOuPagar(valor);
                             mesa.setDinheiro(mesa.getDinheiro() + valor);
+                            tmp = tmp.getNext();
                             break;
                         case 3:
-                            mesa.removerJogador(j);
+                            mesa.removerJogador(tmp.getData().getId());
+                            tmp = tmp.getNext();
                             break;
                     }
                 }

@@ -25,6 +25,19 @@ public class ListaDuplamenteEncadeada {
         }
     }
 
+    public void insertAtEnd(Cliente data) {
+        NodeCliente temp = new NodeCliente(data);
+
+        if (tail == null) {
+            head = temp;
+            tail = temp;
+        } else {
+            temp.setPrev(tail);
+            tail.setNext(temp);
+            tail = temp;
+        }
+    }
+
 
     public void traverseForward() {
         //se quiser printar pela head, faca as modificacoes abaixo
