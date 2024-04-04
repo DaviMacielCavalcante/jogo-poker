@@ -54,6 +54,7 @@ public class Main {
                     System.out.println();
                     System.out.println("Sua mão: ");
                     tmp.getData().visualizarMao();
+                    System.out.println("Seu saldo: R$"+tmp.getData().getPontuacao());
                     System.out.println("-------------------");
                     System.out.println("Escolha uma ação: ");
                     System.out.println("[1] - Passar");

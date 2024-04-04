@@ -1,5 +1,6 @@
 package Classes;
 import Filas.FilaCartas;
+import exceptions.*;
 
 public class Cliente {
 
@@ -14,6 +15,7 @@ public class Cliente {
 
     public Cliente(int id) {
         this.id = id;
+        this.pontuacao = 1000;
     }
 
     public int getId() {
@@ -78,6 +80,14 @@ public class Cliente {
     }
 
     public int apostarOuPagar(int valor) {
+        try{
+            if(valor>this.pontuacao){
+                throw new SaldoInsuficiente("Saldo insuficiente para aposta");
+            }
+            this.pontuacao -= valor;
+        }catch (SaldoInsuficiente e){
+            System.out.println(e.getMessage());
+        }
         return valor;
     }
 
