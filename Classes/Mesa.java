@@ -14,7 +14,7 @@ public class Mesa {
     private PilhaClientes colocacao = new PilhaClientes();
     private ListaDuplamenteEncadeada ordemDeJogada2 = new ListaDuplamenteEncadeada();
     private int qtdJogadores;
-    private int dinheiro;
+    private int dinheiro = 0;
 
     PilhaCartas cartas = new PilhaCartas(52);
 
@@ -104,5 +104,21 @@ public class Mesa {
     public void acrescentarCarta() {
         cartasEmJogo.add(cartas.head.getData());
         cartas.pop();
+    }
+
+    public void mostrarTabela(){
+        ListaDuplamenteEncadeada aux = ordemDeJogada2;
+        int menor = aux.head.getData().getPontuacao();
+        for (int i = 0; i<ordemDeJogada2.tamanho();i++){
+            NodeCliente current = aux.head;
+            while (current != null){
+                if (current.getData().getPontuacao()<=menor){
+                    colocacao.push(current.getData());
+                    aux.deleteByKey(current.getData().getId());
+                }
+                current = current.getNext();
+            }
+        }
+        colocacao.imprimirPilha();
     }
 }

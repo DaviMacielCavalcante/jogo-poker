@@ -84,6 +84,7 @@ public class Main {
                 }
 
             }
+            mesa.mostrarTabela();
         } while (true);
 
         //sc.close();

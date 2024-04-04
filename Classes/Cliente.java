@@ -100,6 +100,7 @@ public class Cliente {
         return "Cliente{" +
                 "id=" + id +
                 ", mao=" + mao +
+                ", pontuacao=" + pontuacao +
                 '}';
     }
 }
