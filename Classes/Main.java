@@ -18,22 +18,30 @@ public class Main {
             int qtdJogadores = sc.nextInt();
             mesa.iniciarJogo(qtdJogadores);
 
-            Cliente jogador;
-            NodeCliente temp = mesa.getOrdemDeJogada2().head;
-            Carta temp1 = new Carta();
+            NodeCliente temp;
+            Carta temp1;
+            Carta temp2;
 
-            for (int i = 1; i <= 5; i++) {
-                if (i == 1) {
-                    mesa.acrescentarCarta();
-                    temp1 = mesa.getCartasEmJogo().head.getData();
-                    mesa.acrescentarCarta();
-                    i++;
+
+            mesa.acrescentarCarta();
+            temp1 = mesa.getCartasEmJogo().head.getData();
+            mesa.acrescentarCarta();
+            temp2 = mesa.getCartasEmJogo().head.getData();
+
+            for (int i = 0; i < 4; i++) {
+                temp = mesa.getOrdemDeJogada2().head;
+                if (i == 0) {
                     while (temp!= null){
                         temp.getData().receberCarta(temp1);
+                        temp.getData().receberCarta(temp2);
                         temp = temp.getNext();
                     }
-                    continue;
                 }
+                while (temp!= null){
+                    temp.getData().receberCarta(temp1);
+                    temp = temp.getNext();
+                }
+
                 mesa.acrescentarCarta();
                 temp1 = mesa.getCartasEmJogo().head.getData();
                 NodeCliente tmp = mesa.getOrdemDeJogada2().head;
