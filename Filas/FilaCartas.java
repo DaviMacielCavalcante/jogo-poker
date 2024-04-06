@@ -60,5 +60,17 @@ public class FilaCartas {
     public int size() {
         return tamanho;
     }
+
+    public int melhorCarta() {
+        NodeCarta temp = tail;
+        NodeCarta maior = temp;
+        while (temp != null) {
+            if (temp.getData().getValor() < temp.getPrev().getData().getValor()) {
+                maior = temp.getPrev();
+            } 
+            temp = tail.getPrev();
+        }
+        return maior.getData().getValor();
+    }
 }
 

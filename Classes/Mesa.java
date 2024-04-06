@@ -141,4 +141,25 @@ public class Mesa {
         // Exiba a pilha de colocação
         colocacao.imprimirRanking();
     }
+
+    public void vencedorRodada(int dinheiro) {
+        Cliente melhorMao = null;
+        int controle = 0;
+        while (controle < ordemDeJogada.tamanho()) {
+            //Reiniciando a variável de comparação
+            melhorMao = ordemDeJogada.head.getData();
+
+            // Percorrendo a pilha para encontrar o jogador com a maior pontuação
+            NodeCliente current = ordemDeJogada.head;
+            while (current != null) {
+                if (melhorMao.getMao().melhorCarta() < current.getData().getMao().melhorCarta() ) {
+                    melhorMao = current.getData();
+                }
+                current = current.getNext();
+            }
+            controle++;
+        }
+        System.out.println("\nO vencedor da rodada foi: " + melhorMao.getNome() + "\n");
+        ordemDeJogada.acharJogador(melhorMao.getId()).setPontuacao(melhorMao.getPontuacao() + dinheiro);
+    }
 }

@@ -83,11 +83,13 @@ public class Cliente {
 
     public int apostarOuPagar(int valor) {
         try{
-            if(valor>this.pontuacao){
+            if (valor>this.pontuacao){
                 throw new SaldoInsuficiente("Saldo insuficiente para aposta");
             }
+            
             this.pontuacao -= valor;
-        }catch (SaldoInsuficiente e){
+
+        } catch (SaldoInsuficiente e){
             System.out.println(e.getMessage());
         }
         return valor;

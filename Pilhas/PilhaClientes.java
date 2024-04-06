@@ -78,7 +78,7 @@ public class PilhaClientes {
         int i = 0;
         while (current != null) {
             i++;
-            System.out.println(" " + i + "°: " + current.getData().getNome());
+            System.out.println(" " + i + "°: " + current.getData().getNome() + ", com " + current.getData().getPontuacao() + "\n");
             current = current.getNext();
         }
     }

@@ -10,6 +10,7 @@ public class Main {
         Mesa mesa = new Mesa();
 
         Scanner sc = new Scanner(System.in);
+        boolean end = false;
 
         do {
             System.out.println("***** JOGO DO ISAAC ****");
@@ -48,7 +49,7 @@ public class Main {
 
                 while (tmp != null){
 
-                    System.out.println("Jogador-Id: " + tmp.getData().getId());
+                    System.out.println("Jogador: " + tmp.getData().getNome());
 
 
                     System.out.println();
@@ -71,7 +72,6 @@ public class Main {
                             System.out.println("Digite o valor: ");
 
                             int valor = sc.nextInt();
-
                             tmp.getData().apostarOuPagar(valor);
                             mesa.setDinheiro(mesa.getDinheiro() + valor);
                             tmp = tmp.getNext();
@@ -80,15 +80,13 @@ public class Main {
                             mesa.removerJogador(tmp.getData().getId());
                             tmp = tmp.getNext();
                             break;
-                        case 4:
-                            return;
                     }
                 }
             }
+            end = true;
             mesa.mostrarTabela();
-            return;
-        } while (true);
+        } while (!end);
 
-        //sc.close();
+        sc.close();
     }
 }
