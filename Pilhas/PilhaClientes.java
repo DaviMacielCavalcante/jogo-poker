@@ -71,4 +71,15 @@ public class PilhaClientes {
             current = current.getNext();
         }
     }    
+
+    public void imprimirRanking() {
+        System.out.println("------RANKING------");
+        NodeCliente current = head;
+        int i = 0;
+        while (current != null) {
+            i++;
+            System.out.println(" " + i + "°: " + current.getData().getNome());
+            current = current.getNext();
+        }
+    }
 }

@@ -9,12 +9,14 @@ public class Cliente {
     private boolean jogar;
     private boolean continuar;
     private int pontuacao;
+    private String nome;
 
     public Cliente() {
     }
 
-    public Cliente(int id) {
+    public Cliente(int id, String nome) {
         this.id = id;
+        this.nome = nome;
         this.pontuacao = 1000;
     }
 
@@ -102,5 +104,13 @@ public class Cliente {
                 ", mao=" + mao +
                 ", pontuacao=" + pontuacao +
                 '}';
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

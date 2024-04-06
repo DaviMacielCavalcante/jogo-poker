@@ -29,7 +29,7 @@ public class Main {
             temp2 = mesa.getCartasEmJogo().head.getData();
 
             for (int i = 0; i < 4; i++) {
-                temp = mesa.getOrdemDeJogada2().head;
+                temp = mesa.getOrdemDeJogada().head;
                 if (i == 0) {
                     while (temp!= null){
                         temp.getData().receberCarta(temp1);
@@ -44,7 +44,7 @@ public class Main {
 
                 mesa.acrescentarCarta();
                 temp1 = mesa.getCartasEmJogo().head.getData();
-                NodeCliente tmp = mesa.getOrdemDeJogada2().head;
+                NodeCliente tmp = mesa.getOrdemDeJogada().head;
 
                 while (tmp != null){
 
@@ -80,11 +80,13 @@ public class Main {
                             mesa.removerJogador(tmp.getData().getId());
                             tmp = tmp.getNext();
                             break;
+                        case 4:
+                            return;
                     }
                 }
-
             }
             mesa.mostrarTabela();
+            return;
         } while (true);
 
         //sc.close();

@@ -34,7 +34,6 @@ public class PilhaCartas {
             NodeCarta temp = null;
             temp = head;
             head = head.getNext();
-            System.out.println(temp.getData());
             this.quantidade -= 1;
         } else {
             System.out.println("Pilha vazia");

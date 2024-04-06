@@ -5,16 +5,16 @@ import Filas.*;
 import ListaDuplamenteEncadeada.*;
 import Nodes.NodeCliente;
 import Pilhas.*;
+import java.util.Scanner;
 
 
 public class Mesa {
 
     private FilaCartas cartasEmJogo = new FilaCartas();
-    private FilaClientes ordemDeJogada = new FilaClientes();
-    private PilhaClientes colocacao = new PilhaClientes();
-    private ListaDuplamenteEncadeada ordemDeJogada2 = new ListaDuplamenteEncadeada();
-    private int qtdJogadores;
+    private PilhaClientes colocacao;
+    private ListaDuplamenteEncadeada ordemDeJogada = new ListaDuplamenteEncadeada();
     private int dinheiro = 0;
+    Scanner sc = new Scanner(System.in);
 
     PilhaCartas cartas = new PilhaCartas(52);
 
@@ -27,10 +27,6 @@ public class Mesa {
 
     public FilaCartas getCartasEmJogo() {
         return cartasEmJogo;
-    }
-
-    public FilaClientes getOrdemDeJogada() {
-        return ordemDeJogada;
     }
 
     public PilhaClientes getColocacao() {
@@ -49,15 +45,18 @@ public class Mesa {
         return "";
     }
     
-    public ListaDuplamenteEncadeada getOrdemDeJogada2() {
-        return ordemDeJogada2;
+    public ListaDuplamenteEncadeada getOrdemDeJogada() {
+        return ordemDeJogada;
     }
 
     public void iniciarJogo(int qtdJogadores) {
+        colocacao = new PilhaClientes(qtdJogadores);
+        String nome;
         gerarCartas();
         for (int i = 0; i < qtdJogadores; i++) {
-
-            Cliente cliente = new Cliente(i);
+            System.out.println("\nInsira o nome do jogador " + i + ":\n");
+            nome = sc.nextLine();
+            Cliente cliente = new Cliente(i, nome);
             FilaCartas maoTemp = new FilaCartas();
 
             for (int j = 0; j < 2; j++) {
@@ -66,7 +65,7 @@ public class Mesa {
                 maoTemp.add(cartaTemp);
             }
             cliente.receberMao(maoTemp);
-            ordemDeJogada2.insertAtEnd(cliente);
+            ordemDeJogada.insertAtEnd(cliente);
         }
     }
 
@@ -90,7 +89,7 @@ public class Mesa {
     }
 
     public void removerJogador(int i) {
-        NodeCliente temp = ordemDeJogada2.head;
+        NodeCliente temp = ordemDeJogada.head;
         ListaDuplamenteEncadeada aux = new ListaDuplamenteEncadeada();
         while (temp != null) {
             if (((i)!= temp.getData().getId())) {
@@ -98,7 +97,7 @@ public class Mesa {
             }
             temp = temp.getNext();
         }
-        this.ordemDeJogada2 = aux;
+        this.ordemDeJogada = aux;
     }
 
     public void acrescentarCarta() {
@@ -106,19 +105,40 @@ public class Mesa {
         cartas.pop();
     }
 
-    public void mostrarTabela(){
-        ListaDuplamenteEncadeada aux = ordemDeJogada2;
-        int menor = aux.head.getData().getPontuacao();
-        for (int i = 0; i<ordemDeJogada2.tamanho();i++){
-            NodeCliente current = aux.head;
-            while (current != null){
-                if (current.getData().getPontuacao()<=menor){
-                    colocacao.push(current.getData());
-                    aux.deleteByKey(current.getData().getId());
+    public void mostrarTabela() {
+        // Inicializando a variável menorPontuacao com o primeiro jogador da pilha que contém os jogadores
+        Cliente menorPontuacao;
+        
+        // Enquanto a pilha não estiver vazia
+        while (ordemDeJogada.tamanho() != 0) {
+            //Reiniciando a variável de comparação
+            menorPontuacao = ordemDeJogada.head.getData();
+
+            // Percorrendo a pilha para encontrar o jogador com a maior pontuação
+            NodeCliente current = ordemDeJogada.head;
+            while (current != null) {
+                if (current.getData().getPontuacao() < menorPontuacao.getPontuacao()) {
+                    menorPontuacao = current.getData();
                 }
                 current = current.getNext();
             }
+            
+            // Adicionando o jogador com a maior pontuação na pilha de colocação
+            colocacao.push(menorPontuacao);
+            
+            // Excluindo o jogador com a maior pontuação da pilha original
+            ordemDeJogada.deleteByKey(menorPontuacao.getId());
+
+            //Resetando os IDs para ficarem de acordo com suas posições na lista
+            current = ordemDeJogada.head;
+            int contador = 0;
+            while (current != null) {
+                current.getData().setId(contador);
+                current = current.getNext();
+                contador++;
+            }
         }
-        colocacao.imprimirPilha();
+        // Exiba a pilha de colocação
+        colocacao.imprimirRanking();
     }
 }

@@ -44,11 +44,12 @@ public class ListaDuplamenteEncadeada {
         NodeCliente current = head;
 
         while (current != null) {
-            System.out.println(current.getData() + "\n");
+            System.out.println(current.getData() + "4");
             current = current.getNext();
         }
         System.out.println();
     }
+
     public void deleteAtBeggining() {
         if (head == null) {
             return;
@@ -116,5 +117,4 @@ public class ListaDuplamenteEncadeada {
         }
         return temp.getData();
     }
-    
 }
